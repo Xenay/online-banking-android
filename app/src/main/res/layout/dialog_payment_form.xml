@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <EditText
+            android:id="@+id/recipient_name_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Recipient Name"
+            android:inputType="textPersonName"/>
+
+        <EditText
+            android:id="@+id/sender_iban_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Sender IBAN"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/recipient_iban_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Recipient IBAN"
+            android:inputType="text"/>
+
+        <EditText
+            android:id="@+id/amount_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Amount"
+            android:inputType="numberDecimal"/>
+
+        <EditText
+            android:id="@+id/payment_description_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Payment Description"
+            android:inputType="textMultiLine"/>
+
+        <Button
+            android:id="@+id/submit_payment_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit Payment"/>
+
+    </LinearLayout>
+
+
