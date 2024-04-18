@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginLeft="16dp"
-    android:layout_marginTop="60dp"
+    android:layout_marginTop="0dp"
     android:layout_marginRight="16dp"
     tools:context=".DashboardFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/bankAccountsRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="692dp"
         tools:listitem="@layout/bank_account_item" />
 
 </FrameLayout>

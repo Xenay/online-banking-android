@@ -32,8 +32,12 @@ class DashboardFragment : Fragment(), PaymentDialogListener {
         initializeRecyclerView(view)
         fetchBankAccounts()
         return view
-
-
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if (savedInstanceState == null) {
+            fetchBankAccounts()
+        }
     }
     override fun onPaymentSuccess() {
         fetchBankAccounts()
@@ -62,11 +66,24 @@ class DashboardFragment : Fragment(), PaymentDialogListener {
                 } else {
                     Log.e("DashboardFragment", "Failed to fetch bank accounts: ${response.code()}")
                 }
+
+
             }
+            operator fun invoke(call: Call<List<BankAccount>>, response: Response<List<BankAccount>>?) {
+                if (response != null) {
+                    onResponse(call, response)
+                }
+                // Cancel the Call object after use
+                call.cancel()
+            }
+
 
             override fun onFailure(call: Call<List<BankAccount>>, t: Throwable) {
                 Log.e("DashboardFragment", "Error fetching bank accounts: ${t.message}")
             }
+
+
+
         })
     }
 

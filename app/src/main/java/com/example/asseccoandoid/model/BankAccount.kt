@@ -5,5 +5,6 @@ data class BankAccount(
     val name: String,
     val balance: Double,
     val type: String,
-    val iban: String
+    val iban: String,
+    val id: Long,
 )

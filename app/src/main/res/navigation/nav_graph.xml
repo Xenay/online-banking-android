@@ -24,6 +24,9 @@
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@animator/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_FirstFragment_to_transactionsFragment"
+            app:destination="@id/transactionsFragment" />
     </fragment>
     <fragment
         android:id="@+id/SecondFragment"
@@ -43,11 +46,14 @@
         android:id="@+id/dashboardFragment"
         android:name="com.example.asseccoandoid.DashboardFragment"
         android:label="Dashboard"
-        tools:layout="@layout/dashboard_fragment" />
+        tools:layout="@layout/fragment_dashboard" >
+    </fragment>
 
+    <fragment
+        android:id="@+id/transactionsFragment"
+        android:name="com.example.asseccoandoid.TransactionsFragment"
+        android:label="Transactions"
+        tools:layout="@layout/fragment_transactions" />
+    <!-- Other fragments and navigation actions -->
 
-
-    <action
-        android:id="@+id/action_global_dashboardFragment"
-        app:destination="@id/dashboardFragment" />
 </navigation>
