@@ -10,28 +10,34 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.asseccoandoid.R
+import com.example.asseccoandoid.listeners.BankAccountClickListener
 import com.example.asseccoandoid.model.BankAccount
 
-class BankAccountAdapter(private var bankAccounts: List<BankAccount>) : RecyclerView.Adapter<BankAccountAdapter.ViewHolder>() {
+class BankAccountAdapter(private var bankAccounts: List<BankAccount>, private val clickListener: BankAccountClickListener)
+    : RecyclerView.Adapter<BankAccountAdapter.ViewHolder>() {
     private var isLoaded = false
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val typeText: TextView = view.findViewById(R.id.typeText)
         val nameText: TextView = view.findViewById(R.id.nameText)
         val balanceText: TextView = view.findViewById(R.id.balanceText)
         val ibanText: TextView = view.findViewById(R.id.ibanText)
-        var buttonOverview: Button = view.findViewById(R.id.buttonOverview)
-        var buttonTransactions: Button = view.findViewById(R.id.buttonTransactions)
-        var buttonPay: Button = view.findViewById(R.id.buttonPay)
+        val buttonOverview: Button = view.findViewById(R.id.buttonOverview)
+        val buttonTransactions: Button = view.findViewById(R.id.buttonTransactions)
+        val buttonPay: Button = view.findViewById(R.id.buttonPay)
 
+        init {
+            buttonOverview.setOnClickListener {
+                val position = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    clickListener.onAccountClick(bankAccounts[position])
+                }
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.bank_account_item, parent, false)
-            return ViewHolder(view)
-
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.bank_account_item, parent, false)
+        return ViewHolder(view) // No need to pass clickListener or bankAccounts since ViewHolder can access them
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -45,8 +51,6 @@ class BankAccountAdapter(private var bankAccounts: List<BankAccount>) : Recycler
                 holder.nameText.text = bankAccount.name
                 holder.balanceText.text = bankAccount.balance.toString()
                 holder.ibanText.text = bankAccount.iban
-
-                holder.buttonOverview.setOnClickListener { v -> }
 
                 holder.buttonTransactions.setOnClickListener { v -> }
 

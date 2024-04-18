@@ -5,23 +5,48 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-
     tools:context=".MainActivity">
 
+    <!-- AppBarLayout will contain the logo and toolbar -->
     <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+        <!-- Horizontal LinearLayout to contain the ImageView and MaterialToolbar -->
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <!-- ImageView for the Logo -->
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="168dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/logo_high_res" />
+
+            <!-- MaterialToolbar for the toolbar content -->
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_gravity="center_vertical"
+                app:title="@string/app_name" />
+
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
+    <!-- Content layout -->
     <include layout="@layout/content_main" />
 
+    <!-- Floating Action Button -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
@@ -31,7 +56,5 @@
         android:layout_marginBottom="16dp"
         android:backgroundTint="#B71C1C"
         app:srcCompat="@android:drawable/ic_dialog_dialer" />
-
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

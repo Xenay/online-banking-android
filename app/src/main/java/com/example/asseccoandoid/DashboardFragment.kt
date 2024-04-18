@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.asseccoandoid.adapter.BankAccountAdapter
+import com.example.asseccoandoid.listeners.BankAccountClickListener
 import com.example.asseccoandoid.listeners.PaymentDialogListener
 import com.example.asseccoandoid.model.BankAccount
 import com.example.asseccoandoid.service.BankAccountService
@@ -18,7 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DashboardFragment : Fragment(), PaymentDialogListener {
+class DashboardFragment : Fragment(), PaymentDialogListener, BankAccountClickListener {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: BankAccountAdapter;
@@ -46,7 +49,7 @@ class DashboardFragment : Fragment(), PaymentDialogListener {
     private fun initializeRecyclerView(view: View) {
         recyclerView = view.findViewById(R.id.bankAccountsRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
-        adapter = BankAccountAdapter(emptyList()) // Initialize with an empty list
+        adapter = BankAccountAdapter(emptyList(),this ) // Initialize with an empty list
         recyclerView.adapter = adapter
     }
 
@@ -93,5 +96,34 @@ class DashboardFragment : Fragment(), PaymentDialogListener {
             DashboardFragment().apply {
                 // Add any setup code here if needed
             }
+    }
+
+    override fun onAccountClick(account: BankAccount) {
+        showAccountDetailsPopup(account)
+    }
+    private fun showAccountDetailsPopup(account: BankAccount) {
+        Log.d("DashboardFragment", "Attempting to show account details popup.")
+
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.popup_account_details, null)
+
+        // Assuming you have text views with these IDs in your account_details_popup.xml
+        val accountTypeTextView: TextView = dialogView.findViewById(R.id.accountTypeTextView)
+        val accountBalanceTextView: TextView = dialogView.findViewById(R.id.accountBalanceTextView)
+        val accountNumberTextView: TextView = dialogView.findViewById(R.id.accountNumberTextView)
+        val accountOwnerTextView: TextView = dialogView.findViewById(R.id.accountOwnerTextView)
+
+        // Set the account details in the TextViews
+        accountTypeTextView.text = account.type
+        accountBalanceTextView.text = getString(R.string.available_balance_format, account.balance)
+        accountNumberTextView.text = getString(R.string.iban_format,  account.iban)  // Assuming your BankAccount model has this field
+        accountOwnerTextView.text = getString(R.string.name_format,  account.name)     // Assuming your BankAccount model has this field
+
+        // Create and show the dialog
+        val dialog = AlertDialog.Builder(requireContext())
+            .setView(dialogView)
+            .setPositiveButton(android.R.string.ok) { dialogInterface, _ -> dialogInterface.dismiss() }
+            .create()
+
+        dialog.show()
     }
 }
