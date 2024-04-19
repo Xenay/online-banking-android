@@ -32,7 +32,7 @@
             android:id="@+id/ibanLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stanje"
+            android:text="@string/balance"
             android:textSize="14sp"
             app:layout_constraintBaseline_toBaselineOf="@+id/typeText"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -99,25 +99,17 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#C62828"
-                android:text="Pregled"
+                android:text="@string/viewAccount"
                 android:textColorHighlight="#F44336"
                 android:textColorLink="#FB7474" />
 
             <Button
-                android:id="@+id/buttonTransactions"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:backgroundTint="#C62828"
-                android:text="Prometi" />
-
-            <Button
                 android:id="@+id/buttonPay"
-                android:layout_width="0dp"
+                android:layout_width="2dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:backgroundTint="#C62828"
-                android:text="Plati" />
+                android:text="@string/makePayment" />
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

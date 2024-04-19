@@ -7,4 +7,9 @@ data class BankAccount(
     val type: String,
     val iban: String,
     val id: Long,
-)
+) {
+    override fun toString(): String {
+        return "$name - $balance EUR"
+    }
+}
+

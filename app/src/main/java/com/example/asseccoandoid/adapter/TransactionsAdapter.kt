@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.asseccoandoid.R
 import com.example.asseccoandoid.model.Transaction
@@ -22,12 +23,16 @@ class TransactionsAdapter(private var transactions: List<Transaction>, private v
         fun bind(transaction: Transaction) {
             recipientNameTextView.text = transaction.recipientName ?: "N/A"
             // Log to check the transaction account ID and current user account ID
-            Log.e("TransactionBind", "Transaction Account ID: ${transaction.accountId}, Current User ID: $currentUserAccountId")
+            Log.e("TransactionBind", "Transaction Account ID: ${transaction}, Current User ID: $currentUserAccountId")
             // Determine the sign based on whether the transaction account ID matches the current user account ID
             val sign = if (transaction.accountId == currentUserAccountId) "-" else "+"
             amountTextView.text = "$sign${transaction.amount}"
             dateTextView.text = transaction.transactionDate
             descriptionTextView.text = transaction.paymentDescription ?: "No description"
+
+            val amountTextColor = if (sign == "-") R.color.red else R.color.green
+            amountTextView.setTextColor(ContextCompat.getColor(itemView.context, amountTextColor))
+
         }
     }
 

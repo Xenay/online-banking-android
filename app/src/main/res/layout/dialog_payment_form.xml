@@ -5,46 +5,75 @@
         android:orientation="vertical"
         android:padding="20dp">
 
+        <TextView
+            android:id="@+id/textView4"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recipientName" />
+
         <EditText
             android:id="@+id/recipient_name_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Recipient Name"
+            android:hint="@string/recipientName"
             android:inputType="textPersonName"/>
-
+        <TextView
+            android:id="@+id/textView5"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/senderIban" />
         <EditText
             android:id="@+id/sender_iban_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Sender IBAN"
+            android:hint="IBAN"
             android:inputType="text"/>
-
+        <TextView
+            android:id="@+id/textView6"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/recipientIban" />
         <EditText
             android:id="@+id/recipient_iban_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Recipient IBAN"
+            android:hint="IBAN"
             android:inputType="text"/>
+        <TextView
+            android:id="@+id/textView7"
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/amountInEur" />
 
         <EditText
             android:id="@+id/amount_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Amount"
+            android:hint="@string/amountInEur"
             android:inputType="numberDecimal"/>
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/description" />
 
         <EditText
             android:id="@+id/payment_description_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Payment Description"
+            android:hint="@string/description"
             android:inputType="textMultiLine"/>
 
-        <Button
-            android:id="@+id/submit_payment_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Submit Payment"/>
+    <Button
+        android:id="@+id/submit_payment_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#E53935"
+        android:text="@string/submit" />
 
     </LinearLayout>
 

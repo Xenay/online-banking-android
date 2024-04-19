@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="language_options">
+        <item>EN</item>
+        <item>HR</item>
+    </string-array>
+    <string name="app_name">.Banking</string>
+    <string name="next">Sljedeće</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Prijava</string>
+    <string name="register">Registriraj</string>
+    <string name="viewTransactions">Pregled</string>
+    <string name="internalTransfer">Unutarnji prijenos</string>
+    <string name="logout">Log out</string>
+    <string name="recipient">Primatelj</string>
+    <string name="amount">Iznos</string>
+    <string name="date">Datum</string>
+    <string name="description">Opis</string>
+    <string name="viewAccount">Pregled</string>
+    <string name="makePayment">Plati</string>
+    <string name="balance">Stanje</string>
+    <string name="accountName">Ime računa</string>
+    <string name="submit">Potvrdi</string>
+    <string name="cancel">Odustani</string>
+    <string name="password">Lozinka</string>
+    <string name="recipientName">Ime primatelja</string>
+    <string name="iban">IBAN</string>
+    <string name="senderIban">Vaš IBAN</string>
+    <string name="recipientIban">IBAN primatelja</string>
+    <string name="amountInEur">Iznos (u EUR)</string>
+    <string name="transfer">Prijenos</string>
+    <string name="fromAccount">Sa računa</string>
+    <string name="toAccount">Na račun</string>
+
+
+</resources>

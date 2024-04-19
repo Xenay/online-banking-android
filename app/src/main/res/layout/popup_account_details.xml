@@ -15,8 +15,11 @@
             android:id="@+id/accountTypeTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:foregroundTint="#FF0000"
             android:text="Žiro račun"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="#C62828"
+            android:textStyle="bold" />
 
         <View
             android:id="@+id/horizontalLine2"
@@ -29,6 +32,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/typeText" />
 
+        <TextView
+            android:id="@+id/baltext"
+            android:layout_width="320dp"
+            android:layout_height="25dp"
+            android:text="@string/balance"
+            android:textColor="#E53935"
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/accountBalanceTextView"
             android:layout_width="296dp"
@@ -48,9 +58,16 @@
             app:layout_constraintTop_toBottomOf="@id/typeText" />
 
         <TextView
+            android:id="@+id/numberText"
+            android:layout_width="320dp"
+            android:layout_height="25dp"
+            android:text="IBAN:"
+            android:textColor="#E53935"
+            android:textSize="14sp" />
+        <TextView
             android:id="@+id/accountNumberTextView"
             android:layout_width="320dp"
-            android:layout_height="30dp"
+            android:layout_height="25dp"
             android:textSize="14sp" />
 
         <View
@@ -64,6 +81,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/typeText" />
 
+        <TextView
+            android:id="@+id/accname"
+            android:layout_width="320dp"
+            android:layout_height="25dp"
+            android:text="@string/accountName"
+            android:textColor="#E53935"
+            android:textSize="14sp" />
         <TextView
             android:id="@+id/accountOwnerTextView"
             android:layout_width="320dp"

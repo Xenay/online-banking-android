@@ -13,6 +13,8 @@ import com.example.asseccoandoid.model.Transaction
 import com.example.asseccoandoid.service.BankApiService
 import com.example.asseccoandoid.singleton.RetrofitClient
 import com.example.asseccoandoid.util.SessionManager
+import com.google.gson.Gson
+import com.google.gson.JsonParser
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -58,7 +60,26 @@ class TransactionsFragment : Fragment() {
         service.getUserTransactions(currentUserAccountId).enqueue(object : Callback<List<Transaction>> {
             override fun onResponse(call: Call<List<Transaction>>, response: Response<List<Transaction>>) {
                 if (response.isSuccessful) {
-                    transactionsAdapter.updateData(response.body() ?: emptyList())
+                    val gson = Gson()
+                    Log.e("TransactionFetch", "Raw JSON: ${gson.toJson(response.body())}")
+
+                    val jsonTransactions = gson.toJson(response.body())
+                    val jsonArray = JsonParser.parseString(jsonTransactions).asJsonArray
+
+                    val transactions = response.body()!!
+
+                    val updatedTransactions = jsonArray.map { jsonElement ->
+                        val jsonObject = jsonElement.asJsonObject
+                        val accountJsonObject = jsonObject.getAsJsonObject("account")
+                        Log.e("TransactionFetch", "Account JSON: $accountJsonObject")
+                        val accountId = accountJsonObject?.get("id")?.asLong ?: 0
+                        Log.e("TransactionFetch", "Account ID: $accountId")
+
+                        gson.fromJson(jsonElement, Transaction::class.java).apply {
+                            this.accountId = accountId
+                        }
+                    }
+                    transactionsAdapter.updateData(updatedTransactions ?: emptyList())
                 } else {
                     Log.e("TransactionFetch", "Response not successful: ${response.message()}")
                 }

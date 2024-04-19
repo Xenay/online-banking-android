@@ -7,8 +7,16 @@ data class Transaction(
     val amount: Double,
     val transactionDate: String,
     val paymentDescription: String?,
-    val accountId: Long,
+    var accountId: Long,
     val recipientIban: String?,
     val paymentTypeId: Long,
-    val paymentType: String
+    val paymentType: String,
+    val account: AccountFetch
 )
+data class AccountFetch(
+    val id: Long,
+    val accountNumber: String,
+    val username: String
+)
+
+

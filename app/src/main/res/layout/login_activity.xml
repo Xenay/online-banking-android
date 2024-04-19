@@ -12,14 +12,14 @@
             android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="UserName"
+            android:hint="@string/accountName"
             android:inputType="textPersonName"/>
 
         <EditText
             android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Login"
+            android:hint="@string/password"
             android:inputType="textPassword"/>
 
         <Button
@@ -36,10 +36,6 @@
             android:backgroundTint="#C62828"
             android:text="Register" />
 
-        <Spinner
-            android:id="@+id/languageSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

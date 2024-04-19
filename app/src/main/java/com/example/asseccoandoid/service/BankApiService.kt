@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface BankApiService {
-    @GET("api/transactions/user")
+    @GET("/api/transactions/user")
     fun getUserTransactions(@Query("accountId") accountId: Long): Call<List<Transaction>>
 }

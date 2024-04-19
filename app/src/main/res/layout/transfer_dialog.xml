@@ -27,20 +27,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
-            android:hint="Amount" />
+            android:hint="@string/amount" />
 
         <EditText
             android:id="@+id/transferDescription"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="Description" />
+            android:hint="@string/description" />
 
         <Button
             android:id="@+id/submitTransfer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit Transfer"
+            android:text="@string/submit"
             app:iconTint="#C62828"
             android:backgroundTint="#C62828"
             />
@@ -49,7 +49,7 @@
             android:id="@+id/cancelTransfer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:backgroundTint="#C62828"
             />
 

@@ -2,6 +2,7 @@ package com.example.asseccoandoid
 
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.util.Log
 import com.google.android.material.snackbar.Snackbar
@@ -11,6 +12,8 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
@@ -30,6 +33,7 @@ import com.example.asseccoandoid.model.TransferPayload
 import com.example.asseccoandoid.response.TransferResponse
 import com.example.asseccoandoid.service.BankAccountService
 import com.example.asseccoandoid.singleton.RetrofitClient
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -59,6 +63,8 @@ class MainActivity : AppCompatActivity() {
             finish()
             return // Prevent further execution
         }
+        val languageSpinner: Spinner = findViewById(R.id.languageSpinner)
+        setupLanguageSpinner(languageSpinner)
 
         // Intent to navigate directly to the Dashboard if logged in
         if (intent.getBooleanExtra("navigateToDashboard", true)) {
@@ -203,5 +209,43 @@ class MainActivity : AppCompatActivity() {
         loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
         startActivity(loginIntent)
         finish()  // Close the current activity
+    }
+    private fun setupLanguageSpinner(languageSpinner: Spinner) {
+        ArrayAdapter.createFromResource(
+            this,
+            R.array.language_options, // Defined in res/values/arrays.xml
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            languageSpinner.adapter = adapter
+        }
+
+        languageSpinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
+                val languageCode = when (position) {
+                    0 -> "en" // English
+                    1 -> "hr" // Croatian
+                    else -> return
+                }
+                setLocale(languageCode)
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+                // Optionally handle the case where nothing is selected
+            }
+        }
+    }
+
+    private fun setLocale(languageCode: String) {
+        val currentLocale = Locale.getDefault().language
+        if (languageCode != currentLocale) {
+            val locale = Locale(languageCode)
+            Locale.setDefault(locale)
+            val config = Configuration()
+            config.setLocale(locale)
+            resources.updateConfiguration(config, resources.displayMetrics)
+
+            recreate()  // Only recreate if there's a change
+        }
     }
 }

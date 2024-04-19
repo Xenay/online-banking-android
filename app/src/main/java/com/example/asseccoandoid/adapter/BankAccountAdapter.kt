@@ -22,7 +22,6 @@ class BankAccountAdapter(private var bankAccounts: List<BankAccount>, private va
         val balanceText: TextView = view.findViewById(R.id.balanceText)
         val ibanText: TextView = view.findViewById(R.id.ibanText)
         val buttonOverview: Button = view.findViewById(R.id.buttonOverview)
-        val buttonTransactions: Button = view.findViewById(R.id.buttonTransactions)
         val buttonPay: Button = view.findViewById(R.id.buttonPay)
 
         init {
@@ -51,8 +50,6 @@ class BankAccountAdapter(private var bankAccounts: List<BankAccount>, private va
                 holder.nameText.text = bankAccount.name
                 holder.balanceText.text = bankAccount.balance.toString()
                 holder.ibanText.text = bankAccount.iban
-
-                holder.buttonTransactions.setOnClickListener { v -> }
 
                 holder.buttonPay.setOnClickListener { v ->
                     val context = holder.itemView.context
