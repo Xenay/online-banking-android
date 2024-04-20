@@ -1,5 +1,6 @@
 package com.example.asseccoandoid
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -42,7 +43,7 @@ class DashboardFragment : Fragment(), PaymentDialogListener, BankAccountClickLis
             fetchBankAccounts()
         }
     }
-    override fun onPaymentSuccess() {
+    override fun onPaymentSuccess(context: Context) {
         fetchBankAccounts()
     }
 

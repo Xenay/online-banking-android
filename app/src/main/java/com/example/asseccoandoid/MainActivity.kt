@@ -23,6 +23,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.example.asseccoandoid.databinding.ActivityMainBinding
+import com.example.asseccoandoid.listeners.PaymentDialogListener
 import com.example.asseccoandoid.model.Account
 import com.example.asseccoandoid.util.SessionManager
 import retrofit2.Call
@@ -36,7 +37,7 @@ import com.example.asseccoandoid.singleton.RetrofitClient
 import java.util.Locale
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), PaymentDialogListener {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
@@ -184,6 +185,7 @@ class MainActivity : AppCompatActivity() {
             override fun onResponse(call: Call<TransferResponse>, response: Response<TransferResponse>) {
                 if (response.isSuccessful) {
                     Log.d("Transfer", "Transfer successful: ${response.body()?.message}")
+
                     // Optionally, show a toast or alert dialog here to inform the user of success
                 } else {
                     Log.e("Transfer", "Failed to execute transfer: ${response.errorBody()?.string()}")

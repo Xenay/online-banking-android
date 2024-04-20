@@ -12,6 +12,7 @@ import com.example.asseccoandoid.model.PaymentOrder
 import com.example.asseccoandoid.response.PaymentResponse
 import com.example.asseccoandoid.service.PaymentService
 import com.example.asseccoandoid.singleton.RetrofitClient
+import com.example.asseccoandoid.singleton.WebSocketClient
 import com.example.asseccoandoid.util.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,6 +26,8 @@ class PaymentDialogFragment : DialogFragment() {
     private lateinit var amountEditText: EditText
     private lateinit var paymentDescriptionEditText: EditText
     private var listener: PaymentDialogListener? = null
+    private lateinit var webSocketClient: WebSocketClient
+
 
 
     private var senderIban: String? = null
@@ -38,6 +41,11 @@ class PaymentDialogFragment : DialogFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
         listener = context as? PaymentDialogListener
+        webSocketClient = WebSocketClient(requireContext()) // Initialize com.example.asseccoandoid.singleton.WebSocketClient
+
+        if (listener == null) {
+            throw RuntimeException("$context must implement PaymentDialogListener")
+        }
     }
 
     override fun onDetach() {
@@ -102,8 +110,9 @@ class PaymentDialogFragment : DialogFragment() {
                 override fun onResponse(call: Call<PaymentResponse>, response: Response<PaymentResponse>) {
                     if (response.isSuccessful) {
                         // Handle success
-                        Log.e("PaymentDialogFragment", "Payment successful")
-                        listener?.onPaymentSuccess()
+
+                        listener?.onPaymentSuccess(requireContext())
+
                         dismiss()
                     } else {
                         // Handle error
